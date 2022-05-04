@@ -1,12 +1,13 @@
 package ru.zelenov.springcourse.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class SecondController {
   @GetMapping("/exit")
-  public String exit() {
-    return "second/exit";
+  public ResponseEntity<String> exit() {
+    return ResponseEntity.ok("No more links");
   }
 }
