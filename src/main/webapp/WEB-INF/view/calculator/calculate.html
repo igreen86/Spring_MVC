@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+
+<h2>Enter expression</h2>
+<br>
+<form th:action="@{/result}" th:method="POST" th:object="${expression}">
+    <label for="a">Enter value a:
+        <input type="text" th:field="*{a}" id="a" />
+    </label>
+    <br>
+    <br>
+
+    <label for="action">Enter action(+ - / *):
+        <input type="text" th:field="*{action}" id="action" />
+    </label>
+    <br>
+    <br>
+
+    <label for="b">Enter value b:
+        <input type="text" th:field="*{b}" id="b" />
+    </label>
+    <br>
+    <br>
+
+    <input type="submit" value="Calculate"/>
+</form>
+
+</body>
+</html>

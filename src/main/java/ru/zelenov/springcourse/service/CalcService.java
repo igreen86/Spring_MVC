@@ -4,10 +4,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface CalcService {
-  Double add(Double a, Double b);
-  Double subtract(Double a, Double b);
-  Double multiply(Double a, Double b);
-  Double divide(Double a, Double b);
+  Double add(double a, double b);
+  Double subtract(double a, double b);
+  Double multiply(double a, double b);
+  Double divide(double a, double b);
 
-  String doAction(Double a, Double b, String action);
+  String doAction(double a, double b, String action);
 }
