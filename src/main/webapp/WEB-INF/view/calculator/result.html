@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+
+<h2>Result</h2>
+<span th:text="${expression.getResult()}"></span>
+<br>
+
+<form th:action="@{/calc}" th:method="POST" th:object="${expression}">
+    <input type="hidden" th:field="*{a}"/>
+    <input type="hidden" th:field="*{action}"/>
+    <input type="hidden" th:field="*{b}"/>
+    <br>
+    <input type="submit" value="Calculate again"/>
+</form>
+
+</body>
+</html>

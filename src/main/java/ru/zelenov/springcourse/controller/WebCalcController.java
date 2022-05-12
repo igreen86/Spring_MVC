@@ -3,7 +3,9 @@ package ru.zelenov.springcourse.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import ru.zelenov.springcourse.model.Expression;
 import ru.zelenov.springcourse.service.CalcService;
 
 @Controller
@@ -17,14 +19,20 @@ public class WebCalcController {
   }
 
   @GetMapping("/calc")
-  public String calc(@RequestParam(value = "a") Double a,
-                     @RequestParam(value = "b") Double b,
-                     @RequestParam(value = "action") String action,
-                     Model model) {
-    model.addAttribute("a", a);
-    model.addAttribute("b", b);
-    model.addAttribute("action", action);
-    model.addAttribute("result", calcService.doAction(a, b, action));
-    return "/calc/calc";
+  public String calcForm(Model model) {
+    model.addAttribute("expression", new Expression());
+    return "calculator/calculate";
+  }
+
+  @PostMapping("/calc")
+  public String calcForm(@ModelAttribute Expression expression) {
+    return "calculator/calculate";
+  }
+
+  @PostMapping("/result")
+  public String calcSubmit(@ModelAttribute Expression expression, Model model) {
+    model.addAttribute(expression);
+    expression.setResult(calcService.doAction(expression.getA(), expression.getB(), expression.getAction()));
+    return "calculator/result";
   }
 }
